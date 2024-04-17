@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1 style="text-align: center; color: orange">Exception Handler 사용해보기</h1>
+    <hr>
+    <h3>@ExceptionHandler</h3>
+    <button onclick="location.href='controller-null'">NullPointerException(참조하는게 없다) 테스트</button>
+    <button onclick="location.href='controller-user'">사용자 정의 Exception 테스트</button>
+    <hr>
+
+    <!--ExceptionControllerHandler 안에 여러개 만들어놨는데 지금 이 other-controller 에서 작동할때 다른것도 동작하는지 테스트!-->
+    <h3>@ControllerAdvice</h3>
+    <button onclick="location.href='other-controller-null'">다른 컨트롤러 NullPointerException 테스트</button>
+    <!--▲ 결과는 다른 컨트롤러에는 영향 안준다.
+        즉, 한개씩 다 만들어줘야하는데 이를 해결하기 위해서 AOP 사용하여 응집도 높여준다! -->
+    <button onclick="location.href='other-controller-user'">다른 컨트롤러 사용자 정의 Exception 테스트</button>
+    <button onclick="location.href='other-controller-array'">ArrayException 테스트</button>
+
+
+</body>
+</html>

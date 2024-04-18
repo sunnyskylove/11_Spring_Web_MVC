@@ -91,12 +91,12 @@ public class FileUploadController {
             filePath = resourceLoader.getResource("classpath:static/img/multi").getFile().getAbsolutePath();
         }
 
-        System.out.println("filePath = " + filePath);    // 여러개를 저장할땐 이쪽에다가??(build에..??)
+        System.out.println("filePath = " + filePath);          // 여러개를 저장할땐 이쪽에다가??(build 에..??)
 
         List<FileDTO> files = new ArrayList<>();
         List<String> saveFiles = new ArrayList<>();
 
-        for (MultipartFile file : multiFiles) {   // 여러개 놓을 반복문 만들기(file라는 변수에 계속 담아주기)
+        for (MultipartFile file : multiFiles) {               // 여러개 놓을 반복문 만들기(file라는 변수에 계속 담아주기)
 
             /* 파일명 변경 처리 */
             String originFileName = file.getOriginalFilename();

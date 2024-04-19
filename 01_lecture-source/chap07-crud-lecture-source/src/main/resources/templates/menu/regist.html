@@ -18,7 +18,7 @@
             <option value="N">N</option>
         </select>
         <input type="submit" value="전송">
-        <script>
+        <script>            <!-- select 에 option 넣기 위해 script 만듦-->
             fetch("/menu/category")
                 .then(res => res.json())
                 .then(data =>{

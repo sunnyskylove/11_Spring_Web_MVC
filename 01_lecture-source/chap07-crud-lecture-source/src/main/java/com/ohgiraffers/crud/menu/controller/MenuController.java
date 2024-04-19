@@ -29,7 +29,7 @@ public class MenuController {
     private static final Logger logger = LogManager.getLogger(MenuController.class);
 
     /* 의존성 주입받기!!*/
-    private final MenuService menuService;
+    private final MenuService menuService;      // *new 로 하면 계속 불러일으키니깐~~AOI컨테이너~~
     private final MessageSource messageSource;        // 메세지를 읽을 수 있는 객체
 
 

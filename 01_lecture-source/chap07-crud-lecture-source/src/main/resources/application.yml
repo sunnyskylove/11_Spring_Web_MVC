@@ -11,7 +11,7 @@ spring:
     username: ohgiraffers
     password: ohgiraffers
 
-# ? mybatis / MenuMapper.xml ?? ???
+# ? mybatis / (??)MenuMapper.xml ?? ???
 mybatis:
   mapper-locations: mappers/**/*.xml
 

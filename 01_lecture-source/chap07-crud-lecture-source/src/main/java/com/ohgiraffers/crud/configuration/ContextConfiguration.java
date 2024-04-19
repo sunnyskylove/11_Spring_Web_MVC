@@ -14,7 +14,7 @@ public class ContextConfiguration {
 
     @Bean
     public ReloadableResourceBundleMessageSource messageSource() {
-    // (한국어)다국적 설정에 대해 읽을 수 있게 @bean 도 만들어주고, Reload~만들어준다!! 해당 내용은 아래에~~
+    // (한국어)다국적 설정에 대해 읽을 수 있게 @bean 도 만들어주고, Reload~만들어준다!! (메인은 가능한 안 건드리고, 사용위해) 해당 내용은 아래에~~
 
         /* 참고. ReloadableResourceBundleMessageSource 는 spring 에서 메세지 관리하고 다국어 처리를 위해 사용되는 클래스이다.
         *       리로드 가능한 리소스 번들을 통해 메세지를 로드하고 관리하는 역할을 한다. ▽

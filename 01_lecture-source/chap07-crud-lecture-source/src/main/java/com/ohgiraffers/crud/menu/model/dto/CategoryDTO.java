@@ -47,4 +47,5 @@ public class CategoryDTO {
                 ", refCategoryCode=" + refCategoryCode +
                 '}';
     }
+
 }

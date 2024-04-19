@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service        // 난 서비스 계층이야~bean 등록!!
+@Service      // 난 서비스 계층이야~ bean 등록!!
 public class MenuService {
 
     private final MenuMapper menuMapper;

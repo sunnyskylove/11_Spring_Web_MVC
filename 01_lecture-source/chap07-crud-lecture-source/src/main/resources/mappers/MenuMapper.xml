@@ -39,7 +39,12 @@
     </select>
 
     <insert id="registNewMenu" parameterType="com.ohgiraffers.crud.menu.model.dto.MenuDTO"
-            useGeneratedKeys="true" keyProperty="code"><!--  -->
+            useGeneratedKeys="true" keyProperty="code">
+        <!-- 데이터베이스에서 새로운 사용자 추가할때 사용자 ID(PK)가 자동으로 증가되는 경우가 있는데
+            useGeneratedKeys=true 로 설정하여 새로운 사용자의 아이디 얻어올 수 있다.
+            스프링에서 DB에서 자동 생성된 키 값을 직접 가져와서 좀 더 편리하고 안전하게 수행하기 위해 사용한다.
+            (true로 설정하면, 자동으로 생성된 키 값을 반환하도록 JDBC드라이버에 지시하고, 이것이 새로운 레코드의 PK 를 얻어오기 위해 사용된다.)
+            -->
         INSERT INTO tbl_menu
         (
         menu_name,

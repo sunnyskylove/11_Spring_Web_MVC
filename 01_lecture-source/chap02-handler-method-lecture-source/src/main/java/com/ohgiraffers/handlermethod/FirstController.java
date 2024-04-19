@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.context.request.WebRequest;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.Map;
 
 @Controller
@@ -21,9 +23,7 @@ public class FirstController {
      * */
 
     @GetMapping("/regist")
-    public void regist() {}         // view로 보임
-
-
+    public void regist() {}        // view로 보임
 
     /* 필기.
      *   WebRequest 로 요청 파라미터 전달 받기
@@ -32,16 +32,15 @@ public class FirstController {
      *   Spring 의 일부이기 때문에 Servlet 을 사용하는 것처럼 동일하게 사용할 수 있다.
      * */
     @PostMapping("regist")
-    public String regist(Model model, WebRequest request) {
+    public String registMenu(Model model, WebRequest request) {
 
         // 꺼내오기!!
-        String name = request.getParameter("name");       // regist파일에 있는 해당의 name에 있는 값들이 key값이다!
-        int price = Integer.parseInt(request.getParameter("price"));        //넘어오는 값 parcing해줘서 오류 풀기~
+        String name = request.getParameter("name");                     // regist파일에 있는 해당의 name에 있는 값들이 key값이다!
+        int price = Integer.parseInt(request.getParameter("price"));   //넘어오는 값 parcing해줘서 오류 풀기~
         int categoryCode = Integer.parseInt(request.getParameter("categoryCode"));
 
-        //
         String message = name + "을(를) 신규 메뉴 목록의 " + categoryCode + "번 카테고리에" +
-                price + "원을 등록했습니다!!!";
+                price + "원으로 등록했습니다.!!";
 
         model.addAttribute("message", message);
 
@@ -62,8 +61,8 @@ public class FirstController {
 
     @PostMapping("modify")
     public String modifyMenuPrice(Model model,
-                                  @RequestParam(required = false) String modifyName,                // 값 아무것도 입력 안할시, 밑 0으로~~ (근데 아무것도 안써도 되지만, 오류가 나온다)
-                                  @RequestParam(defaultValue = "0") String modifyPrice) {
+                                  @RequestParam(required = false) String modifyName,
+                                  @RequestParam(defaultValue = "0") int modifyPrice) {
 
         String message = modifyName + "메뉴의 가격을 " + modifyPrice + "원으로 변경하였습니다!!";
 
@@ -87,7 +86,7 @@ public class FirstController {
     }
 
     @GetMapping("/search")
-    public void search() { }
+    public void search() {}
 
     /* 필기.
     *   3. @ModelAttribute 를 이용하는 방법
@@ -111,14 +110,14 @@ public class FirstController {
     }
 
     @GetMapping("login")
-    public void login(){}
+    public void login() {}
 
     /* 4-1. session 이용하기
     *   HttpSession 을 매개변수로 선언하면 핸들러 메소드 호출 시 새션 객체를 넣어서 호출한다.
     * */
 
     @PostMapping("login1")
-    public String sessionTest1(HttpSession session,@RequestParam String id){
+    public String sessionTest1(HttpSession session, @RequestParam String id) {
 
         session.setAttribute("id", id);
 
@@ -126,21 +125,20 @@ public class FirstController {
     }
 
     @GetMapping("logout")
-    public String logoutTest(HttpSession session){
+    public String logoutTest1(HttpSession session) {
 
-        session.invalidate();       // 강제로 닫는 거 만드는 호출!
+        session.invalidate();      // 강제로 닫는 거 만드는 호출!
 
-        return "first/logoutResult";
+        return "first/loginResult";
 
     }
 
     @PostMapping("login2")
-    public String sessionTest2(Model model, @RequestParam String id){
+    public String sessionTest2(Model model, @RequestParam String id) {
 
         model.addAttribute("id", id);
 
-        return "first/logoutResult";
-
+        return "first/loginResult";
     }
 
     /*  참고. SessionAttributes 로 등록 된 값은 session 의 상태를 관리하는
@@ -159,7 +157,32 @@ public class FirstController {
         return "first/loginResult";
     }
 
+    @GetMapping("body")
+    public void body(){}
+    //void 형태로 view 반환 할 것이다!!, first 를 페이지로서 바로 보여줄수 있게 만들 수 있음!!
+
+    @PostMapping("body")
+    /* 참고. @RequestBody
+    *   http 본문 자체를 읽는 부분을 모델로 변환시켜 주는 어노테이션
+    *   출력시 쿼리스트링 형태의 문자열이 전송된다.
+    *   JSON 으로 전달하는 경우 Jackson 의 컨버터로 자동 파싱하여 사용할 수 있다.
+    *
+    *   참고. RestAPI 작성 시 사용되며, 일반적인 form 전송을 할 때는 거의 사용하지 않는다.
+    *    @RequestHeader 헤더에 대한 정보 가져오기
+    * */
+    public void bodyTest(@RequestBody String body, @RequestHeader("content-type") String contentType) throws UnsupportedEncodingException {      // ("content-type")이라고 만들고 이걸 옆에 있는 contentType 변수에다가 저장하기!
+
+        System.out.println("body = " + body);
+        System.out.println(contentType);        // 제대로 들어갔는지 확인!!
+        System.out.println(URLDecoder.decode(body, "UTF-8"));
+        // 바꾸고 싶은 URL 을 가로안에 전달인자들 넣어준다!(body 에 한꺼번에 url 방식으로 쏴준다~)
+        // enc 는 파일 업로드할때 encoding 을 적어놓는것, 그리고 빨간줄은 throw 로 예외처리해주기!
+        // 나중에 많이 쓰임. 지금은 간단하게 봐보기~~
+
+        // 웹의 결과값은 intellij의 콘솔창에 뜬다.
+    }
+
+
 }
 
 
-// 푸쉬~~~~~~~~~!!!!!

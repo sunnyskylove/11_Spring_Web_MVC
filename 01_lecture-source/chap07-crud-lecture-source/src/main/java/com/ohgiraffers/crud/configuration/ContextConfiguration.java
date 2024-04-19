@@ -23,7 +23,7 @@ public class ContextConfiguration {
         source.setBasename("classpath:/messages/message");   // 메세지 리소스번들의 베이스 이름을 설정하는 부분이다. 이 설정으로 Spring 에게 메세지 소스를 찾을 위치를 알려주기
         source.setDefaultEncoding("UTF-8");                 // 메세지를 통해 기본 인코디 설정할 수 있는데 UTF-8로 기본 인코딩 설정함
 
-        /* 참고. 제공하지 않는 언어로 요청 시 MessageSource에서 사용할 default 언어 -한국 */
+        /* 참고. 제공하지 않는 언어로 요청 시 MessageSource 에서 사용할 default 언어 -한국 */
         Locale.setDefault(Locale.KOREA);        // 한국어로 기본 로케일(지역)로 설정함
         return source;
 

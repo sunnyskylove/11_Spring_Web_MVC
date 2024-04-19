@@ -36,7 +36,7 @@ public class MenuController {
     /* 생성자 만들기~*/
     @Autowired
     public MenuController(MenuService menuService, MessageSource messageSource) {
-        this.menuService = menuService;
+        this.menuService = menuService;         // 초기화 시키기!
         this.messageSource = messageSource;
     }
 

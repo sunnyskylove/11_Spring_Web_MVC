@@ -70,6 +70,7 @@ public class MenuController {
         logger.info("Locale : {}", locale);
 //        rttr.addFlashAttribute("successMessage","신규 메뉴 등록에 성공하셨습니다!!!");  // 얘는 썼었는데 지움~
         rttr.addFlashAttribute("successMessage", messageSource.getMessage("registMenu",new Object[]{newMenu.getName()},locale));
+
         // ▼ forward 방식이 아닌 redirect 방식으로 리턴해주기
         return "redirect:/menu/list";
 

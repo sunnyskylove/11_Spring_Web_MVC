@@ -60,4 +60,39 @@
         #{ orderableStatus }
         )
     </insert>
+
+    <resultMap id="menuAndCategoryResultMap" type="com.ohgiraffers.crud.menu.model.dto.MenuAndCategoryDTO">
+        <id property="code" column="menu_code"/>
+        <result property="name" column="menu_name"/>
+        <result property="price" column="menu_price"/>
+        <result property="orderableStatus" column="orderable_status"/>
+        <association property="categoryDTO" javaType="com.ohgiraffers.crud.menu.model.dto.CategoryDTO">
+            <id property="code" column="category_code"/>
+            <result property="name" column="category_name"/>
+            <result property="refCategoryCode" column="ref_category_code"/>
+        </association>
+    </resultMap>
+
+    <select id="findAllMenuAndCategoryList" resultMap="menuAndCategoryResultMap">
+        select
+        a.menu_code,
+        a.menu_name,
+        a.menu_price,
+        a.orderable_status,
+        b.category_code,
+        b.category_name,
+        b.ref_category_code
+        from
+        tbl_menu a
+        join
+        tbl_category b on (a.category_code = b.category_code)
+        where
+        a.orderable_status = 'Y'
+    </select>
+
+    <delete id="deleteMenuByCode" parameterType="int">  <!--parameter type으로 int라는 것을 명시해주자!(code 가!!)-->
+        delete from tbl_menu
+        where menu_code = ${ code }
+    </delete>
+
 </mapper>

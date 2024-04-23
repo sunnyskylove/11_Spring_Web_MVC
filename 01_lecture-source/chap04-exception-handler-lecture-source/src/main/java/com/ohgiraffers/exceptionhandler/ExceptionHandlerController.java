@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 
 
-//참고. ㅁ 해당 클래스 안 타입에 맞는 예외처리 잡는곳!!(scope 지역변수)
+//참고. ㅁ 해당 클래스 안 타입에 맞는 예외처리 잡는곳!!(scope 지역변수/ 이 지역에서 잡히는데~~)
 @Controller
 public class ExceptionHandlerController {
 

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class Othercontroller {
 
-    // 전역변수 만들기 위해 필요~~!!!
+    // *전역변수 만들기 위해 필요~~!!!
     /* 필기.
     *   다른 컨트롤러에서 Exception 이 발생 했을 때
     *   우리가 ExceptionHandlerController 에 정의 해둔

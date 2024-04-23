@@ -4,7 +4,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-// 참고. 전역변수 클래스 만들기!!!! (지역.)전역에도 없다면, 흔히 보고 있는 에러 긴 페이지가 나옴!!
+// 참고. *전역변수 클래스 만들기!!!!_other에서~ (지역.)전역에도 없다면, 흔히 보고 있는 에러 긴 페이지가 나옴!!
 /* 필기.
  *   전역에 대한 예외 처리를 담당하는 친구이다.
  *   여러 컨트롤러에서 발생할 수 있는 예외(Exception)을 한 곳에서 처리할 수 있다.

@@ -20,11 +20,13 @@ public class MenuService {
         this.menuMapper = menuMapper;
     }
 
+    // 메뉴로~~
     public List<MenuDTO> findAllMenus() {
 
         return menuMapper.findAllMenus();
     }
 
+    // 카테고리로~~
     public List<CategoryDTO> findAllCategory() {
 
         return menuMapper.findAllCategory();

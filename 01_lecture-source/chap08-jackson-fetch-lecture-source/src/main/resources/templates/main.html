@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 align="center">Jackson 라이브러리 활용하기</h1>
+<hr>
+<h3>1. @ResponseBody 를 이용한 응답</h3>
+<button id="jackson1">정보 조회하기</button>
+<table id="memberInfo1" border="1">
+    <thead>
+    <tr>
+        <th>회원번호</th>
+        <th>이름</th>
+        <th>나이</th>
+        <th>가입일</th>
+    </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+<script>
+    document.getElementById("jackson1").addEventListener("click", function () {
+        fetch("jackson1")
+            .then(res => res.json())
+            .then(data => {
+                console.table(data);
+
+                const tableBody = document.querySelector("#memberInfo1 tbody");
+                tableBody.innerHTML = "";
+
+                data.forEach(member => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                            <td>${member.no}</td>
+                            <td>${member.name}</td>
+                            <td>${member.age}</td>
+                            <td>${member.enrollDate}</td>
+                        `;
+
+                    tableBody.appendChild(row);     // appendChild로 한행씩 담아 줄 것임!!
+                })
+            })
+            .catch(error => console.error('Error : ', error));
+    });
+</script>
+
+<h3>2. jsonView 를 이용한 ModelAndView 응답</h3>
+<button id="jackson2">정보 조회하기</button>
+<table id="memberInfo2" border="1">
+    <thead>
+    <tr>
+        <th>회원번호</th>
+        <th>이름</th>
+        <th>나이</th>
+        <th>가입일</th>
+    </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+<script>
+    document.getElementById("jackson2").addEventListener("click", function () {
+        fetch("jackson2")
+            .then(res =>res.json())
+            .then(data => {
+                console.table(data);
+
+                /* 참고. JSON.parse() : json 형식의 문자열에서 javaScript 객체 형태로 변환 */
+                const memberList = JSON.parse(data.memberList);
+                const tableBody = document.querySelector("#memberInfo2 tbody");
+                tableBody.innerHTML = "";
+
+                memberList.forEach(member => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${member.no}</td>
+                        <td>${member.name}</td>
+                        <td>${member.age}</td>
+                        <td>${member.enrollDate}</td>
+                    `;
+
+                    tableBody.appendChild(row);
+                })
+            })
+            .catch(error => console.error('Error :', error))
+    })
+</script>
+
+</body>
+</html>

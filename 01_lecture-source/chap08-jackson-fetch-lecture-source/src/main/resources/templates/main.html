@@ -39,7 +39,7 @@
                             <td>${member.enrollDate}</td>
                         `;
 
-                    tableBody.appendChild(row);     // appendChild로 한행씩 담아 줄 것임!!
+                    tableBody.appendChild(row);
                 })
             })
             .catch(error => console.error('Error : ', error));
@@ -62,11 +62,10 @@
 <script>
     document.getElementById("jackson2").addEventListener("click", function () {
         fetch("jackson2")
-            .then(res =>res.json())
+            .then(res => res.json())
             .then(data => {
                 console.table(data);
-
-                /* 참고. JSON.parse() : json 형식의 문자열에서 javaScript 객체 형태로 변환 */
+                /* JSON.parse() : json 형식의 문자열에서 javaScript 객체 형태로 변환 */
                 const memberList = JSON.parse(data.memberList);
                 const tableBody = document.querySelector("#memberInfo2 tbody");
                 tableBody.innerHTML = "";
@@ -74,18 +73,17 @@
                 memberList.forEach(member => {
                     const row = document.createElement("tr");
                     row.innerHTML = `
-                        <td>${member.no}</td>
-                        <td>${member.name}</td>
-                        <td>${member.age}</td>
-                        <td>${member.enrollDate}</td>
-                    `;
+                            <td>${member.no}</td>
+                            <td>${member.name}</td>
+                            <td>${member.age}</td>
+                            <td>${member.enrollDate}</td>
+                        `;
 
                     tableBody.appendChild(row);
                 })
             })
             .catch(error => console.error('Error :', error))
-    })
+    });
 </script>
-
 </body>
 </html>

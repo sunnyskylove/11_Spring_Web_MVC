@@ -9,6 +9,7 @@ public class WebConfig {
 
     @Bean
     MappingJackson2JsonView jsonView() {
-
+        return new MappingJackson2JsonView();
     }
+
 }
